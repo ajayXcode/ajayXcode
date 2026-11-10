@@ -304,13 +304,13 @@ def activity(data):
 # ---- 4 · repo cards -----------------------------------------------------------
 REPO_W, REPO_H = 880 / 3 - 8, 176
 REPOS = [
-    ("Octavia", "Online music player with ytmusic streaming, audio download & converter.", "React / Flask", TECH, "https://github.com/ajayXcode/Octavia"),
-    ("Echo", "Full-stack MERN productivity dashboard with task timer & analytics.", "Node.js / Mongo", STUDIO, "https://github.com/ajayXcode/Echo"),
-    ("drone-swarm", "Autonomous multi-drone swarm coordination & collision avoidance simulation.", "Python", LEARN, "https://github.com/ajay-rgb/Drone-Swarm-Coordination-Simulator"),
+    ("octavia", "Octavia", "Online music player with ytmusic streaming, audio download & converter.", "React / Flask", TECH, "https://github.com/ajayXcode/Octavia"),
+    ("echo", "Echo", "Full-stack MERN productivity dashboard with task timer & analytics.", "Node.js / Mongo", STUDIO, "https://github.com/ajayXcode/Echo"),
+    ("drone-swarm", "drone-swarm", "Autonomous multi-drone swarm coordination & collision avoidance simulation.", "Python", LEARN, "https://github.com/ajay-rgb/Drone-Swarm-Coordination-Simulator"),
 ]
 
 
-def repo_card(i, name, desc, lang, color, stars):
+def repo_card(i, slug, name, desc, lang, color, stars):
     delay = 4.6 + i * 0.12
     meta = f"{lang}  ·  ★ {stars}" if stars else f"{lang}  ·  live"
     body = f"""
@@ -322,7 +322,7 @@ def repo_card(i, name, desc, lang, color, stars):
   <text x="24" y="{REPO_H - 24}" font-family="{MONO}" font-size="12" fill="{MUTED}">{escape(meta)}</text>
 </g>
 """
-    write(f"repo-{name}.svg", svg(REPO_W, REPO_H, body, ["sans", "sans-b", "mono"], f"{name}: {desc}",
+    write(f"repo-{slug}.svg", svg(REPO_W, REPO_H, body, ["sans", "sans-b", "mono"], f"{name}: {desc}",
                                   left=4 * i, right=8 - 4 * i))
 
 
@@ -399,8 +399,8 @@ if __name__ == "__main__":
     tile("learn", "PROJECTS", LEARN, INK, "20+", "repos",
          "Interactive tools, real-time drawing canvas & audio streaming apps.", 3.6, 2)
     activity(data)
-    for i, (name, desc, lang, color, *_) in enumerate(REPOS):
-        repo_card(i, name, desc, lang, color, 12 if name == "Octavia" else 9 if name == "Echo" else 15)
+    for i, (slug, name, desc, lang, color, *_) in enumerate(REPOS):
+        repo_card(i, slug, name, desc, lang, color, 12 if slug == "octavia" else 9 if slug == "echo" else 15)
     section_title("What I'm", "coding", "dark")
     section_title("What I'm", "coding", "light")
     heatmap(data)
