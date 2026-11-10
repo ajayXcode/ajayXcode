@@ -141,7 +141,7 @@ def text_lines(x, y, lines, lh, attrs):
 
 # ---- 1 · hero -----------------------------------------------------------------
 def hero():
-    h = 420
+    h = 428
     portrait = []
     if os.path.exists(PORTRAIT):
         src = open(PORTRAIT, encoding="utf-8").read()
@@ -168,16 +168,16 @@ def hero():
   <rect class="live" x="48" y="49" width="8" height="8" rx="2" fill="{TECH}"/>
   <text x="66" y="57" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">FULL STACK DEVELOPER &amp; AI ENGINEER</text>
 </g>
-<text class="r" {d(0.15)} x="44" y="190" font-family="{SERIF}" font-size="116" letter-spacing="-2.5" fill="{INK}">Ajay</text>
-<text class="r" {d(0.3)} x="44" y="290" font-family="{SERIF}" font-style="italic" font-size="116" letter-spacing="-2.5" fill="url(#shine)">Yadav</text>
+<text class="r" {d(0.15)} x="44" y="165" font-family="{SERIF}" font-size="108" letter-spacing="-2.5" fill="{INK}">Ajay</text>
+<text class="r" {d(0.3)} x="44" y="295" font-family="{SERIF}" font-style="italic" font-size="108" letter-spacing="-2.5" fill="url(#shine)">Yadav</text>
 <g class="r" {d(0.55)}>
-  {text_lines(48, 338, ["I build AI agents, ML pipelines and web apps,", "turning raw ideas into beautifully crafted code."], 27, f'font-family="{SANS}" font-size="18" fill="{INK_SOFT}"')}
+  {text_lines(48, 346, ["I build AI agents, ML pipelines and web apps,", "turning raw ideas into beautifully crafted code."], 25, f'font-family="{SANS}" font-size="17" fill="{INK_SOFT}"')}
 </g>
 <g class="f" {d(0.8)}>
-  <text x="48" y="396" font-family="{MONO}" font-size="13" fill="{INK}">ajayyadav04.vercel.app</text>
-  <text class="nu" x="228" y="396" font-family="{MONO}" font-size="13" fill="{TECH}">&#8599;</text>
+  <text x="48" y="404" font-family="{MONO}" font-size="13" fill="{INK}">ajayyadav04.vercel.app</text>
+  <text class="nu" x="228" y="404" font-family="{MONO}" font-size="13" fill="{TECH}">&#8599;</text>
 </g>
-<g transform="translate(520 46) scale({s}) translate(-20 -37)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+<g transform="translate(520 46) scale({s}) translate(-20 -37)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-weight="600">
   {''.join(portrait)}
 </g>
 """
@@ -392,11 +392,11 @@ def heatmap(data):
 if __name__ == "__main__":
     data = json.load(open(DATA, encoding="utf-8"))
     hero()
-    # Ajay's actual stats: 10+ projects, 3+ hackathons, 2+ years of experience
-    tile("build", "BUILD", TECH, "#ffffff", "10+", "projects",
-         "MedBridge AI, CricSim-X and MDT. Full-stack apps with Next.js, Python & Socket.io.", 3.1, 0)
-    tile("brand", "AI / ML", STUDIO, "#ffffff", "3+", "hackathons",
-         "Clinical AI vision, Monte Carlo cricket simulation & real-time ML pipelines.", 3.35, 1)
+    # Ajay's stats: 20+ projects, 12+ hackathons, 2+ years of experience
+    tile("build", "BUILD", TECH, "#ffffff", "20+", "projects",
+         "MedBridge AI, CricSim-X, MDT & full-stack apps with Next.js, Python and Socket.io.", 3.1, 0)
+    tile("brand", "AI / ML", STUDIO, "#ffffff", "12+", "hackathons",
+         "Clinical AI vision, Monte Carlo cricket analytics and production ML models.", 3.35, 1)
     tile("learn", "SYSTEMS", LEARN, INK, "2+", "years",
          "Building production-grade full-stack architectures & agents with Team Clutch.", 3.6, 2)
     activity(data)
