@@ -3,12 +3,12 @@
      Spacing is baked into the SVGs, so keep this block free of blank lines and keep the cards in
      a row on one line with no spaces between them. -->
 <div align="center">
-<a href="https://ajayyadav04.vercel.app/"><img src="./cards/hero.svg" width="100%" alt="Ajay Yadav. Full Stack Developer & AI Engineer. I build AI agents, ML pipelines and web apps." /></a><br>
-<img src="./cards/heatmap.svg" width="100%" alt="Ajay's contribution graph, in blue, refreshed daily" /><br>
-<img src="./cards/activity.svg" width="100%" alt="Contributions in the last 12 months, by month, with streak and busiest day" /><br>
-<a href="https://ajayyadav04.vercel.app/"><img src="./cards/build.svg" width="33.333%" alt="BUILD: 20+ projects" /></a><a href="https://github.com/ajayXcode/CricSim-X"><img src="./cards/brand.svg" width="33.333%" alt="AI / ML: 12+ hackathons" /></a><a href="https://github.com/ajayXcode?tab=repositories"><img src="./cards/learn.svg" width="33.333%" alt="SYSTEMS: 2+ years" /></a><br>
-<picture><source media="(prefers-color-scheme: dark)" srcset="./cards/title-coding-dark.svg" /><img src="./cards/title-coding-light.svg" width="100%" alt="What I'm coding" /></picture><br>
-<a href="https://github.com/ajayXcode/CricSim-X"><img src="./cards/repo-cricsim-x.svg" width="33.333%" alt="CricSim-X" /></a><a href="https://medbridge-ai-vision.vercel.app/"><img src="./cards/repo-medbridge-ai.svg" width="33.333%" alt="MedBridge-AI" /></a><a href="https://github.com/ajayXcode/Dynamic-Transit"><img src="./cards/repo-dynamic-transit.svg" width="33.333%" alt="Dynamic-Transit" /></a>
+<a href="https://ajayyadav04.vercel.app/"><img src="./cards/hero.svg?v=2" width="100%" alt="Ajay Yadav. Full Stack Developer & AI Engineer. I build AI agents, ML pipelines and web apps." /></a><br>
+<img src="./cards/heatmap.svg?v=2" width="100%" alt="Ajay's contribution graph, in blue, refreshed daily" /><br>
+<img src="./cards/activity.svg?v=2" width="100%" alt="Contributions in the last 12 months, by month, with streak and busiest day" /><br>
+<a href="https://ajayyadav04.vercel.app/"><img src="./cards/build.svg?v=2" width="33.333%" alt="BUILD: 20+ projects" /></a><a href="https://github.com/ajayXcode/CricSim-X"><img src="./cards/brand.svg?v=2" width="33.333%" alt="AI / ML: 12+ hackathons" /></a><a href="https://github.com/ajayXcode?tab=repositories"><img src="./cards/learn.svg?v=2" width="33.333%" alt="SYSTEMS: 2+ years" /></a><br>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./cards/title-coding-dark.svg?v=2" /><img src="./cards/title-coding-light.svg?v=2" width="100%" alt="What I'm coding" /></picture><br>
+<a href="https://github.com/ajayXcode/CricSim-X"><img src="./cards/repo-cricsim-x.svg?v=2" width="33.333%" alt="CricSim-X" /></a><a href="https://medbridge-ai-vision.vercel.app/"><img src="./cards/repo-medbridge-ai.svg?v=2" width="33.333%" alt="MedBridge-AI" /></a><a href="https://github.com/ajayXcode/Dynamic-Transit"><img src="./cards/repo-dynamic-transit.svg?v=2" width="33.333%" alt="Dynamic-Transit" /></a>
 </div>
 
 <p align="center">
