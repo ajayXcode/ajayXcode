@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from PIL import Image, ImageFilter
-from scipy.ndimage import label
+from scipy.ndimage import label, binary_dilation, sobel
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(DIR)
@@ -9,46 +9,73 @@ PORTRAIT_PATH = os.path.join(REPO_ROOT, "assets", "portrait.jpg")
 OUT_SVG = os.path.join(REPO_ROOT, "ajay-ascii.svg")
 
 im = Image.open(PORTRAIT_PATH)
-crop_box = (135, 80, 885, 880)
+crop_box = (150, 90, 874, 830)
 cropped = im.crop(crop_box)
 arr = np.array(cropped)
 
-# Precise outer background detection (flood-filled yellow + white sticker border)
+# Full outer background removal (yellow background + white sticker border)
 is_yellow = (arr[:, :, 0] > 175) & (arr[:, :, 1] > 135) & (arr[:, :, 2] < 110)
-is_white = (arr[:, :, 0] > 235) & (arr[:, :, 1] > 235) & (arr[:, :, 2] > 235)
-bg = is_yellow | is_white
+labeled_y, _ = label(is_yellow)
+yellow_bg = (labeled_y == labeled_y[0, 0])
+is_white = (arr[:, :, 0] > 230) & (arr[:, :, 1] > 230) & (arr[:, :, 2] > 230)
+dilated_yellow = binary_dilation(yellow_bg, iterations=25)
+full_bg = yellow_bg | (is_white & dilated_yellow)
 
-labeled, _ = label(bg)
-outer_bg = (labeled == labeled[0, 0])
-
+# Smooth image to eliminate halftone raster screen dots
 gray = cropped.convert('L')
-smooth = gray.filter(ImageFilter.GaussianBlur(radius=1.5))
+smooth = gray.filter(ImageFilter.GaussianBlur(radius=2.5))
 smooth_arr = np.array(smooth, dtype=float)
-smooth_arr[outer_bg] = 255.0
+smooth_arr[full_bg] = 255.0
+
+# Extract contours / facial edges (jawline, nose, eyes, lips, ears)
+sx = sobel(smooth_arr, axis=1)
+sy = sobel(smooth_arr, axis=0)
+edges = np.hypot(sx, sy)
 
 cols = 120
 rows = 96
 pil_smooth = Image.fromarray(smooth_arr.astype(np.uint8))
 resized_smooth = np.array(pil_smooth.resize((cols, rows), Image.Resampling.LANCZOS))
 
-pil_bg = Image.fromarray((outer_bg * 255).astype(np.uint8))
+pil_edges = Image.fromarray(np.clip(edges, 0, 255).astype(np.uint8))
+resized_edges = np.array(pil_edges.resize((cols, rows), Image.Resampling.LANCZOS))
+
+pil_bg = Image.fromarray((full_bg * 255).astype(np.uint8))
 resized_bg = np.array(pil_bg.resize((cols, rows), Image.Resampling.NEAREST)) > 128
 
-# Rich, dark ASCII ramp: dense ink glyphs
-RAMP = "@%#*+=-:. "
+RAMP = "@%#*+=-"
 
 svg_rows = []
 for y in range(rows):
     line_chars = []
+    # Smooth bust fade out below row 76 so there are no solid zebra blocks
+    fade_prob = max(0.0, 1.0 - (y - 76) / 10.0) if y > 76 else 1.0
+    
     for x in range(cols):
-        if resized_bg[y, x]:
+        if resized_bg[y, x] or fade_prob <= 0.0:
             line_chars.append(" ")
         else:
             val = resized_smooth[y, x]
-            norm = min(1.0, val / 230.0)
-            norm = norm ** 1.35  # Rich contrast curve: deep hair/hoodie, clear dark features
-            idx = int(norm * (len(RAMP) - 1))
-            line_chars.append(RAMP[max(0, min(len(RAMP) - 1, idx))])
+            edge = resized_edges[y, x]
+            
+            # Dark hair and deep shadow features
+            if val < 95:
+                if y > 74 and (x + y) % 2 == 1:
+                    line_chars.append(" ")
+                else:
+                    norm = val / 95.0
+                    idx = int(norm * 4)
+                    line_chars.append(RAMP[max(0, min(3, idx))])
+            # Facial features (eyebrows, eyes, mustache, mouth, jawline, ears)
+            elif val < 125 and edge > 22:
+                line_chars.append("*" if val < 110 else "+")
+            # Clear anatomical contours
+            elif edge > 48:
+                line_chars.append("+")
+            else:
+                # Clean paper skin (cheeks, forehead, nose bridge): pure whitespace!
+                # NO horizontal lines or scan-line grid!
+                line_chars.append(" ")
             
     line = "".join(line_chars).ljust(cols)
     clean_line = line.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
@@ -60,4 +87,4 @@ with open(OUT_SVG, 'w', encoding='utf-8') as f:
     f.write('\n'.join(svg_rows))
     f.write('\n</svg>\n')
 
-print(f"Successfully generated {OUT_SVG} with dark, defined vector ASCII portrait!")
+print(f"Successfully generated clean line-art {OUT_SVG} without scan lines!")
