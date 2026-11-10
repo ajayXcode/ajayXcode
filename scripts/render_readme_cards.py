@@ -305,7 +305,7 @@ REPO_W, REPO_H = 880 / 3 - 8, 176
 # Ajay's actual flagship projects from his portfolio & GitHub repos
 REPOS = [
     ("cricsim-x", "CricSim-X", "IPL analytics engine with Monte Carlo simulation & XGBoost prediction.", "Python", TECH, "https://github.com/ajayXcode/CricSim-X"),
-    ("medbridge-ai", "MedBridge-AI", "Clinical AI-vision diagnostics platform built with Gemini AI & Supabase.", "React / AI", STUDIO, "https://medbridge-ai-vision.vercel.app/"),
+    ("kivo", "KIVO", "Algorithmic option trading desk with FastAPI, React dashboard & Delta Exchange MCP.", "Python / React", STUDIO, "https://github.com/ajayXcode/KIVO"),
     ("dynamic-transit", "Dynamic-Transit", "Real-time fleet transit tracking with Socket.io, TypeScript & monorepo.", "TypeScript", LEARN, "https://github.com/ajayXcode/Dynamic-Transit"),
 ]
 
@@ -389,21 +389,49 @@ def heatmap(data):
                              f'Contribution graph: {data["total_contributions"]:,} contributions in the last year'))
 
 
+# ---- 6 · footer link boxes ----------------------------------------------------
+BOX_W, BOX_H = 210, 46
+LINKS = [
+    ("portfolio", "portfolio", TECH),
+    ("linkedin", "linkedin", "#0a66c2"),
+    ("twitter", "twitter / x", INK),
+    ("email", "email", STUDIO),
+]
+
+
+def box_link(i, slug, label, color):
+    delay = 5.0 + i * 0.08
+    left = i * (10.0 / 3)
+    right = (3 - i) * (10.0 / 3)
+    body = f"""
+<rect width="{BOX_W}" height="{BOX_H}" rx="10" fill="{PAPER}" stroke="#e5e5e2" stroke-width="1"/>
+<g class="r" {d(delay)}>
+  <rect x="20" y="19" width="8" height="8" rx="2" fill="{color}"/>
+  <text x="36" y="28" font-family="{SANS}" font-weight="600" font-size="14" fill="{INK}">{escape(label)}</text>
+  <text class="nu" x="{BOX_W - 24}" y="28" font-family="{MONO}" font-size="14" fill="{MUTED}">&#8599;</text>
+</g>
+"""
+    write(f"box-{slug}.svg", svg(BOX_W, BOX_H, body, ["sans", "sans-b", "mono"], f"Link: {label}",
+                                left=left, right=right, bottom=0))
+
+
 if __name__ == "__main__":
     data = json.load(open(DATA, encoding="utf-8"))
     hero()
     # Ajay's stats: 20+ projects, 12+ hackathons, 2+ years of experience
     tile("build", "BUILD", TECH, "#ffffff", "20+", "projects",
-         "MedBridge AI, CricSim-X, MDT & full-stack apps with Next.js, Python and Socket.io.", 3.1, 0)
+         "KIVO, CricSim-X, Dynamic-Transit & full-stack apps with Python, React and Next.js.", 3.1, 0)
     tile("brand", "AI / ML", STUDIO, "#ffffff", "12+", "hackathons",
          "Clinical AI vision, Monte Carlo cricket analytics and production ML models.", 3.35, 1)
     tile("learn", "SYSTEMS", LEARN, INK, "2+", "years",
          "Building production-grade full-stack architectures & agents with Team Clutch.", 3.6, 2)
     activity(data)
     for i, (slug, name, desc, lang, color, *_) in enumerate(REPOS):
-        tag_val = "ML" if slug == "cricsim-x" else "live"
+        tag_val = "ML" if slug == "cricsim-x" else "quant" if slug == "kivo" else "live"
         repo_card(i, slug, name, desc, lang, color, tag=tag_val)
     section_title("What I'm", "coding", "dark")
     section_title("What I'm", "coding", "light")
     heatmap(data)
+    for i, (slug, label, color) in enumerate(LINKS):
+        box_link(i, slug, label, color)
     print("Done rendering all cards!")
