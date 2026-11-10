@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+env/
+venv/
+*.tmp
+contributions_raw.json
+contributions_rgb.json
+website.html
+website.css
+website.js
+inspect_*.py
+test_*.py
+build_data.py
