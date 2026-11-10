@@ -149,7 +149,7 @@ def hero():
         for i, (y, txt) in enumerate(rows):
             portrait.append(
                 f'<text class="f" style="animation-delay:{0.25 + i * 0.018:.3f}s;animation-duration:.35s" '
-                f'xml:space="preserve" x="20" y="{y}" fill="{INK}" font-size="7.2" '
+                f'xml:space="preserve" x="20" y="{y}" fill="#000000" font-size="7.4" font-weight="600" '
                 f'textLength="800" lengthAdjust="spacing">{txt}</text>'
             )
     s = 0.41
