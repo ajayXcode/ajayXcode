@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GitHub Profile Cards Preview — Ajay Yadav (@ajayXcode)</title>
+  <title>GitHub Profile README Preview — Ajay Yadav (@ajayXcode)</title>
   <style>
     body {
       background-color: #0d1117;
@@ -15,7 +15,7 @@
       align-items: center;
     }
     .readme-container {
-      max-width: 860px;
+      max-width: 880px;
       width: 100%;
       background: #0d1117;
       border: 1px solid #30363d;
@@ -26,7 +26,7 @@
     .cards-stack {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 0;
       width: 100%;
     }
     .cards-stack img {
@@ -34,97 +34,68 @@
       width: 100%;
       height: auto;
     }
-    .tiles-row {
+    .row-3 {
       display: flex;
-      justify-content: space-between;
       width: 100%;
     }
-    .tiles-row a {
-      width: 32.5%;
+    .row-3 a {
+      width: 33.333%;
       display: block;
     }
-    .tiles-row img {
+    .row-3 img {
       width: 100%;
       height: auto;
     }
-    .mode-bar {
-      margin-bottom: 24px;
-      padding: 10px 18px;
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .footer-links {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: #8b949e;
     }
-    .mode-btn {
-      background: #8b5cf6;
-      color: white;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
+    .footer-links a {
+      color: #58a6ff;
       text-decoration: none;
     }
-    .mode-btn:hover {
-      background: #7c3aed;
+    .footer-links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="mode-bar">
-    <span>🎨 <strong>Stack Preview:</strong> GitHub Profile Cards</span>
-    <span style="color:#8b949e">•</span>
-    <span>Match: <strong>Portfolio Palette &amp; Mona Sans</strong></span>
-    <span style="color:#8b949e">•</span>
-    <span>Motion: <strong>Staggered CSS Keyframes &amp; SMIL</strong></span>
-  </div>
-
   <div class="readme-container">
     <div class="cards-stack">
       <!-- 1. Hero -->
-      <div>
-        <img src="cards/hero.svg" alt="Hero Card" />
+      <a href="https://portfolio-tau-rouge-710zivsk3i.vercel.app"><img src="./cards/hero.svg" width="100%" alt="Hero" /></a>
+      
+      <!-- 2. Heatmap -->
+      <img src="./cards/heatmap.svg" width="100%" alt="Heatmap" />
+      
+      <!-- 3. Monthly Activity Bars -->
+      <img src="./cards/activity.svg" width="100%" alt="Activity" />
+      
+      <!-- 4. Three Colored Tiles -->
+      <div class="row-3">
+        <a href="https://portfolio-tau-rouge-710zivsk3i.vercel.app"><img src="./cards/build.svg" alt="Build" /></a>
+        <a href="https://github.com/ajay-rgb/Drone-Swarm-Coordination-Simulator"><img src="./cards/brand.svg" alt="Brand" /></a>
+        <a href="https://github.com/ajayXcode?tab=repositories"><img src="./cards/learn.svg" alt="Learn" /></a>
       </div>
 
-      <!-- 2. Three Linked Tiles (32.5% each) -->
-      <div class="tiles-row">
-        <a href="https://portfolio-tau-rouge-710zivsk3i.vercel.app/" target="_blank">
-          <img src="cards/tile-portfolio.svg" alt="Portfolio Tile" />
-        </a>
-        <a href="https://github.com/ajayXcode?tab=repositories" target="_blank">
-          <img src="cards/tile-projects.svg" alt="Projects Tile" />
-        </a>
-        <a href="https://www.linkedin.com/in/ajay-yadav-2o26/" target="_blank">
-          <img src="cards/tile-connect.svg" alt="Connect Tile" />
-        </a>
-      </div>
+      <!-- 5. Title Coding -->
+      <img src="./cards/title-coding-dark.svg" width="100%" alt="What I'm coding" />
 
-      <!-- 3. Contributions Chart -->
-      <div>
-        <img src="cards/contributions-chart.svg" alt="Contributions Chart Card" />
+      <!-- 6. Three Repos -->
+      <div class="row-3">
+        <a href="https://github.com/ajayXcode/Octavia"><img src="./cards/repo-Octavia.svg" alt="Octavia" /></a>
+        <a href="https://github.com/ajayXcode/Echo"><img src="./cards/repo-Echo.svg" alt="Echo" /></a>
+        <a href="https://github.com/ajay-rgb/Drone-Swarm-Coordination-Simulator"><img src="./cards/repo-drone-swarm.svg" alt="Drone Swarm" /></a>
       </div>
+    </div>
 
-      <!-- 4. Featured Repos -->
-      <a href="https://github.com/ajayXcode/Octavia" target="_blank" style="text-decoration:none;">
-        <img src="cards/repo-octavia.svg" alt="Octavia Repo Card" />
-      </a>
-      <a href="https://github.com/ajayXcode/Echo" target="_blank" style="text-decoration:none;">
-        <img src="cards/repo-echo.svg" alt="Echo Repo Card" />
-      </a>
-      <a href="https://github.com/ajay-rgb/Drone-Swarm-Coordination-Simulator" target="_blank" style="text-decoration:none;">
-        <img src="cards/repo-drone-swarm-coordination-simulator.svg" alt="Drone Swarm Simulator Repo Card" />
-      </a>
-      <a href="https://github.com/ajay-rgb/Inko" target="_blank" style="text-decoration:none;">
-        <img src="cards/repo-inko.svg" alt="Inko Repo Card" />
-      </a>
-
-      <!-- 5. Contribution Graph -->
-      <div>
-        <img src="cards/contribution-graph.svg" alt="Contribution Graph Card" />
-      </div>
+    <div class="footer-links">
+      <a href="https://portfolio-tau-rouge-710zivsk3i.vercel.app">portfolio</a> &nbsp;/&nbsp;
+      <a href="https://www.linkedin.com/in/ajay-yadav-2o26/">linkedin</a> &nbsp;/&nbsp;
+      <a href="https://x.com/ajayXcode">twitter</a> &nbsp;/&nbsp;
+      <a href="mailto:ajayyadav.140507@gmail.com">email</a>
     </div>
   </div>
 </body>
