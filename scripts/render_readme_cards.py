@@ -3,11 +3,9 @@
 Render the profile README's cards as animated SVGs into cards/.
 
 Design: "Three Worlds" (Paper, ink, and one colour per world: BUILD blue,
-BRAND/AIML red, LEARN/PROJECTS yellow; Instrument Serif, Geist, Geist Mono).
+AI/ML red, SYSTEMS yellow; Instrument Serif, Geist, Geist Mono).
 
-Every card is a standalone SVG shown through <img>, strictly compatible with GitHub Camo.
-Fonts are subset WOFFs in fonts/ (Instrument Serif, Geist, Geist Mono).
-Live numbers come from data/contributions.json.
+All personal projects, links, and portfolio data customized for Ajay Yadav (@ajayXcode).
 """
 import base64
 import datetime
@@ -168,23 +166,23 @@ def hero():
 <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
 <g class="f" {d(0)}>
   <rect class="live" x="48" y="49" width="8" height="8" rx="2" fill="{TECH}"/>
-  <text x="66" y="57" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">B.TECH STUDENT • AIML &amp; FULLSTACK</text>
+  <text x="66" y="57" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">FULL STACK DEVELOPER &amp; AI ENGINEER</text>
 </g>
 <text class="r" {d(0.15)} x="44" y="190" font-family="{SERIF}" font-size="116" letter-spacing="-2.5" fill="{INK}">Ajay</text>
 <text class="r" {d(0.3)} x="44" y="290" font-family="{SERIF}" font-style="italic" font-size="116" letter-spacing="-2.5" fill="url(#shine)">Yadav</text>
 <g class="r" {d(0.55)}>
-  {text_lines(48, 338, ["I build software products, explore AI/ML models,", "and make fun projects for daily life."], 27, f'font-family="{SANS}" font-size="18" fill="{INK_SOFT}"')}
+  {text_lines(48, 338, ["I build AI agents, ML pipelines and web apps,", "turning raw ideas into beautifully crafted code."], 27, f'font-family="{SANS}" font-size="18" fill="{INK_SOFT}"')}
 </g>
 <g class="f" {d(0.8)}>
-  <text x="48" y="396" font-family="{MONO}" font-size="13" fill="{INK}">portfolio-tau-rouge-710zivsk3i.vercel.app</text>
-  <text class="nu" x="374" y="396" font-family="{MONO}" font-size="13" fill="{TECH}">&#8599;</text>
+  <text x="48" y="396" font-family="{MONO}" font-size="13" fill="{INK}">ajayyadav04.vercel.app</text>
+  <text class="nu" x="228" y="396" font-family="{MONO}" font-size="13" fill="{TECH}">&#8599;</text>
 </g>
 <g transform="translate(520 46) scale({s}) translate(-20 -37)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
   {''.join(portrait)}
 </g>
 """
     write("hero.svg", svg(W, h, body, ["serif", "serif-i", "sans", "mono"],
-                          "Ajay Yadav. B.Tech in Computer Science. I build software products and explore AI/ML."))
+                          "Ajay Yadav. Full Stack Developer & AI Engineer. I build AI agents, ML pipelines and web apps."))
 
 
 # ---- 2 · world tiles ----------------------------------------------------------
@@ -303,16 +301,18 @@ def activity(data):
 
 # ---- 4 · repo cards -----------------------------------------------------------
 REPO_W, REPO_H = 880 / 3 - 8, 176
+
+# Ajay's actual flagship projects from his portfolio & GitHub repos
 REPOS = [
-    ("octavia", "Octavia", "Online music player with ytmusic streaming, audio download & converter.", "React / Flask", TECH, "https://github.com/ajayXcode/Octavia"),
-    ("echo", "Echo", "Full-stack MERN productivity dashboard with task timer & analytics.", "Node.js / Mongo", STUDIO, "https://github.com/ajayXcode/Echo"),
-    ("drone-swarm", "drone-swarm", "Autonomous multi-drone swarm coordination & collision avoidance simulation.", "Python", LEARN, "https://github.com/ajay-rgb/Drone-Swarm-Coordination-Simulator"),
+    ("cricsim-x", "CricSim-X", "IPL analytics engine with Monte Carlo simulation & XGBoost prediction.", "Python", TECH, "https://github.com/ajayXcode/CricSim-X"),
+    ("medbridge-ai", "MedBridge-AI", "Clinical AI-vision diagnostics platform built with Gemini AI & Supabase.", "React / AI", STUDIO, "https://medbridge-ai-vision.vercel.app/"),
+    ("dynamic-transit", "Dynamic-Transit", "Real-time fleet transit tracking with Socket.io, TypeScript & monorepo.", "TypeScript", LEARN, "https://github.com/ajayXcode/Dynamic-Transit"),
 ]
 
 
-def repo_card(i, slug, name, desc, lang, color, stars):
+def repo_card(i, slug, name, desc, lang, color, tag="live"):
     delay = 4.6 + i * 0.12
-    meta = f"{lang}  ·  ★ {stars}" if stars else f"{lang}  ·  live"
+    meta = f"{lang}  ·  {tag}"
     body = f"""
 <rect width="{REPO_W}" height="{REPO_H}" rx="14" fill="{PAPER}"/>
 <g class="r" {d(delay)}>
@@ -392,15 +392,17 @@ def heatmap(data):
 if __name__ == "__main__":
     data = json.load(open(DATA, encoding="utf-8"))
     hero()
-    tile("build", "BUILD", TECH, "#ffffff", "3", "apps",
-         "Octavia, Echo and Inko. Full-stack apps with React, Node, Python and WebSockets.", 3.1, 0)
-    tile("brand", "AI / ML", STUDIO, "#ffffff", "15+", "models",
-         "Drone swarm simulation, face recognition & autonomous systems.", 3.35, 1)
-    tile("learn", "PROJECTS", LEARN, INK, "20+", "repos",
-         "Interactive tools, real-time drawing canvas & audio streaming apps.", 3.6, 2)
+    # Ajay's actual stats: 10+ projects, 3+ hackathons, 2+ years of experience
+    tile("build", "BUILD", TECH, "#ffffff", "10+", "projects",
+         "MedBridge AI, CricSim-X and MDT. Full-stack apps with Next.js, Python & Socket.io.", 3.1, 0)
+    tile("brand", "AI / ML", STUDIO, "#ffffff", "3+", "hackathons",
+         "Clinical AI vision, Monte Carlo cricket simulation & real-time ML pipelines.", 3.35, 1)
+    tile("learn", "SYSTEMS", LEARN, INK, "2+", "years",
+         "Building production-grade full-stack architectures & agents with Team Clutch.", 3.6, 2)
     activity(data)
     for i, (slug, name, desc, lang, color, *_) in enumerate(REPOS):
-        repo_card(i, slug, name, desc, lang, color, 12 if slug == "octavia" else 9 if slug == "echo" else 15)
+        tag_val = "ML" if slug == "cricsim-x" else "live"
+        repo_card(i, slug, name, desc, lang, color, tag=tag_val)
     section_title("What I'm", "coding", "dark")
     section_title("What I'm", "coding", "light")
     heatmap(data)
